@@ -1,14 +1,4 @@
-const component = (tag, singleTag=false, type='') => (text='', clasz='', id='') => {
-    return singleTag == true ? `<${tag} class="${clasz}" id="${id}" type="${type}">${text}` : `<${tag} class="${clasz}" id="${id}">${text}</${tag}>`
-}
-const render = string => document.body.innerHTML += string
-
-const h1 = component('h1')
-const number = component('input', true, 'number')
-const label = component('label')
-const p = component('p')
-const button = component('button')
-const div = component('div')
+import { h1, label, p, number, button, div, render } from './component.js'
 
 const lista = []
 
@@ -40,10 +30,10 @@ render(
     `
     ${novoDesafio(
         'Tirar Decimais do Número',
-        [number(label('Digite o número'))],
+        [number(label('Digite o número')), number(label('Olá')), number(label('Terceiro'))],
         'Tirar os decimais'
     )}
     `
 )
 
-desafios = document.querySelectorAll('.desafio')
+hello()
