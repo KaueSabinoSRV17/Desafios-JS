@@ -1,26 +1,27 @@
-const novoDesafio = (title='', inputs='', buttonText='', output='') => {
-    lista.push({
-        title: title,
-        inputs: inputs,
-        output: output,
-        button: buttonText
-    })
-    return div(
-    `   ${h1(`Desafio ${lista.length} - ${title}`)}
-        ${inputs}
-        ${p(output)}
-        ${button(buttonText)}`, 
-        'desafio'
-    )
-}
-
-class Desafio {
+export class Desafio {
     constructor(title, inputs, button, output) {
         this.title = title,
         this.inputs = inputs,
         this.button = button,
         this.output = output,
-        this.element = document.querySelector('.desafio')
-        this.render() 
+        this.element = document.createElement('div')
+        this.render()
+    }
+    render() {
+        let elementos = []
+        const createTags = (tag, text, attributes={}) => {
+            const elemento = document.createElement(tag)
+            elemento.innerHTML = text
+            elemento.id = attributes.id || ''
+            elemento.className = attributes.class || ''
+            elemento.type = attributes.type || ''
+            elementos.push(elemento)
+            return elemento
+        }
+        createTags('h1', this.title)
+        createTags('p', this.output)
+        createTags('button', this.button)
+        elementos.forEach(elemento => document.body.appendChild(elemento))
+        console.log(elementos)
     }
 }
